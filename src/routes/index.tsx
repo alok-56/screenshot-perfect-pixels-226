@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import {
   Menu, X, Briefcase, Hammer, Users, Compass, Cpu, ClipboardCheck, Rocket, Smile,
   Phone, Mail, MapPin, MessageCircle, Navigation, CheckCircle2, Award, Quote,
@@ -90,7 +90,7 @@ function Index() {
             {NAV.map(([l, h]) => <a key={h} href={h} className="transition-colors hover:text-brand">{l}</a>)}
           </nav>
           <div className="flex items-center gap-2">
-            <a href="#apply" className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5">Apply Now</a>
+            <a href="#contact" className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5">Get in Touch</a>
             <button aria-label="Menu" onClick={() => setOpen(!open)} className="rounded-full p-2 xl:hidden">{open ? <X /> : <Menu />}</button>
           </div>
         </div>
@@ -114,7 +114,7 @@ function Index() {
               <h1 className="mt-6 font-display text-5xl font-bold leading-[1.03] tracking-tight md:text-6xl">Your path to a <span className="text-brand">successful IT career</span> starts here.</h1>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">KodZen Academy trains students in Java, SQL, web development, React, Python and AI — 100% practical, project-based, with placement assistance.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#apply" className="rounded-full bg-brand px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5">Apply Now</a>
+                <a href="#contact" className="rounded-full bg-brand px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5">Get in Touch</a>
                 <a href="#courses" className="glass rounded-full px-7 py-3.5 font-semibold transition-transform hover:-translate-y-0.5">Explore Courses</a>
               </div>
               <div className="mt-10 flex flex-wrap gap-2">
@@ -169,7 +169,7 @@ function Index() {
                   <div className="mt-4 flex flex-wrap gap-2">{c.skills.map((s) => <span key={s} className="rounded-full bg-ink/5 px-3 py-1 text-xs font-medium">{s}</span>)}</div>
                   <div className="mt-6 flex gap-3">
                     <a href="#contact" className="rounded-full border border-ink/10 px-5 py-2 text-sm font-semibold transition-colors hover:border-brand hover:text-brand">View Details</a>
-                    <a href="#apply" className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-primary-foreground">Apply Now</a>
+                    <a href="#contact" className="rounded-full bg-brand px-5 py-2 text-sm font-semibold text-primary-foreground">Enquire Now</a>
                   </div>
                 </article>
               ))}
@@ -190,7 +190,7 @@ function Index() {
                 <ul className="mt-5 space-y-2.5">
                   {p.items.map((i) => <li key={i} className="flex items-center gap-2.5 opacity-80"><CheckCircle2 className={`size-4 ${p.tone}`} />{i}</li>)}
                 </ul>
-                <a href="#apply" className={`mt-6 inline-block font-semibold ${p.tone}`}>Learn More →</a>
+                <a href="#contact" className={`mt-6 inline-block font-semibold ${p.tone}`}>Learn More →</a>
               </div>
             ))}
           </div>
@@ -262,7 +262,11 @@ function Index() {
                 <li className="flex gap-3"><Mail className="size-5 shrink-0 text-brand" /><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
                 <li className="flex gap-3"><MapPin className="size-5 shrink-0 text-brand" />{CONTACT.address}</li>
               </ul>
-              <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-primary-foreground shadow-glow"><MessageCircle className="size-4" />Chat on WhatsApp</a>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-primary-foreground shadow-glow"><Phone className="size-4" />Call Now</a>
+                <a href={`mailto:${CONTACT.email}`} className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold"><Mail className="size-4 text-brand" />Email Us</a>
+                <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold"><MessageCircle className="size-4 text-brand" />WhatsApp</a>
+              </div>
             </div>
             <div className="glass reveal flex flex-col rounded-3xl p-4 shadow-soft">
               <iframe title="KodZen Academy location" className="min-h-[300px] w-full flex-1 rounded-2xl" loading="lazy" src={`https://maps.google.com/maps?q=${encodeURIComponent(CONTACT.address)}&z=15&output=embed`} />
@@ -274,7 +278,6 @@ function Index() {
           </div>
         </section>
 
-        <EnquiryForm />
       </main>
 
       <footer className="px-6 pb-10">
@@ -313,44 +316,3 @@ function FooterCol({ title, links }: { title: string; links: [string, string][] 
   );
 }
 
-function EnquiryForm() {
-  const [done, setDone] = useState(false);
-  const submit = (e: FormEvent<HTMLFormElement>) => { e.preventDefault(); setDone(true); };
-  return (
-    <section id="apply" className="scroll-mt-24 px-6 py-20">
-      <div className="glass mx-auto max-w-3xl rounded-3xl p-8 shadow-lift sm:p-10">
-        {done ? (
-          <div className="py-10 text-center">
-            <CheckCircle2 className="mx-auto size-14 text-brand" />
-            <h2 className="mt-4 font-display text-2xl font-bold">Thank you! Enquiry received.</h2>
-            <p className="mt-2 text-ink/60">The KodZen Academy team will contact you shortly.</p>
-            <button onClick={() => setDone(false)} className="mt-6 font-semibold text-brand">Submit another enquiry</button>
-          </div>
-        ) : (
-          <>
-            <h2 className="font-display text-3xl font-bold tracking-tight">Apply now</h2>
-            <p className="mt-2 text-sm text-ink/60">Tell us who's learning and what excites them. We'll get back within 24 hours.</p>
-            <form onSubmit={submit} className="mt-8 grid gap-4 sm:grid-cols-2">
-              <input required className="field" placeholder="Student name" />
-              <input className="field" placeholder="Parent name" />
-              <input required type="tel" className="field" placeholder="Phone number" />
-              <input required type="email" className="field" placeholder="Email" />
-              <input className="field" placeholder="School / College name" />
-              <input className="field" placeholder="Current class / year" />
-              <select required className="field" defaultValue="">
-                <option value="" disabled>Course interested in</option>
-                {COURSES.map((c) => <option key={c.name}>{c.name}</option>)}
-                <option>School Program</option><option>College Program</option>
-              </select>
-              <select className="field" defaultValue="Phone">
-                <option>Phone</option><option>WhatsApp</option><option>Email</option>
-              </select>
-              <textarea rows={4} className="field sm:col-span-2" placeholder="Message" />
-              <button className="rounded-full bg-brand py-3.5 font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5 sm:col-span-2">Submit Enquiry</button>
-            </form>
-          </>
-        )}
-      </div>
-    </section>
-  );
-}
