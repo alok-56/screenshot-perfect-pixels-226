@@ -262,7 +262,11 @@ function Index() {
                 <li className="flex gap-3"><Mail className="size-5 shrink-0 text-brand" /><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>
                 <li className="flex gap-3"><MapPin className="size-5 shrink-0 text-brand" />{CONTACT.address}</li>
               </ul>
-              <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-primary-foreground shadow-glow"><MessageCircle className="size-4" />Chat on WhatsApp</a>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-2 rounded-full bg-brand px-6 py-3 font-semibold text-primary-foreground shadow-glow"><Phone className="size-4" />Call Now</a>
+                <a href={`mailto:${CONTACT.email}`} className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold"><Mail className="size-4 text-brand" />Email Us</a>
+                <a href={`https://wa.me/${CONTACT.whatsapp}`} target="_blank" rel="noreferrer" className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 font-semibold"><MessageCircle className="size-4 text-brand" />WhatsApp</a>
+              </div>
             </div>
             <div className="glass reveal flex flex-col rounded-3xl p-4 shadow-soft">
               <iframe title="KodZen Academy location" className="min-h-[300px] w-full flex-1 rounded-2xl" loading="lazy" src={`https://maps.google.com/maps?q=${encodeURIComponent(CONTACT.address)}&z=15&output=embed`} />
