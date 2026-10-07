@@ -8,6 +8,8 @@ import {
 import hero from "@/assets/hero.jpg";
 import logo from "@/assets/kodzen-logo.png.asset.json";
 
+const LOGO_URL = new URL(logo.url, "https://project--2330c76a-d22a-4c0a-a7ad-6bbf6561d084-dev.lovable.app").href;
+
 const TITLE = "KodZen Academy — Java, Python, Web & AI Training in Aurangabad, Bihar";
 const DESC = "Hands-on, mentor-led training in Core Java, Advanced Java, SQL, web development, React, C, C++, Python and AI. Real projects, placement assistance and certification.";
 
@@ -83,14 +85,13 @@ function Index() {
       <header className="sticky top-0 z-50 px-4 py-4 sm:px-6">
         <div className="glass mx-auto flex max-w-6xl items-center justify-between rounded-full px-5 py-3 shadow-soft">
           <a href="#home" className="flex items-center gap-2.5">
-            <img src={logo.url} alt="KodZen Academy logo" className="size-10 rounded-full" />
+            <img src={LOGO_URL} alt="KodZen Academy logo" className="size-10 rounded-full" />
             <span className="font-display text-lg font-bold tracking-tight">KodZen<span className="text-brand">.</span>Academy</span>
           </a>
           <nav className="hidden items-center gap-5 text-sm font-medium text-ink/70 xl:flex">
             {NAV.map(([l, h]) => <a key={h} href={h} className="transition-colors hover:text-brand">{l}</a>)}
           </nav>
           <div className="flex items-center gap-2">
-            <a href="#contact" className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5">Get in Touch</a>
             <button aria-label="Menu" onClick={() => setOpen(!open)} className="rounded-full p-2 xl:hidden">{open ? <X /> : <Menu />}</button>
           </div>
         </div>
@@ -114,7 +115,6 @@ function Index() {
               <h1 className="mt-6 font-display text-5xl font-bold leading-[1.03] tracking-tight md:text-6xl">Your path to a <span className="text-brand">successful IT career</span> starts here.</h1>
               <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">KodZen Academy trains students in Java, SQL, web development, React, Python and AI — 100% practical, project-based, with placement assistance.</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#contact" className="rounded-full bg-brand px-7 py-3.5 font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5">Get in Touch</a>
                 <a href="#courses" className="glass rounded-full px-7 py-3.5 font-semibold transition-transform hover:-translate-y-0.5">Explore Courses</a>
               </div>
               <div className="mt-10 flex flex-wrap gap-2">
@@ -285,7 +285,7 @@ function Index() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div>
               <div className="flex items-center gap-2.5">
-                <img src={logo.url} alt="KodZen Academy logo" className="size-10 rounded-full" />
+                <img src={LOGO_URL} alt="KodZen Academy logo" className="size-10 rounded-full" />
                 <span className="font-display text-lg font-bold tracking-tight">KodZen<span className="text-brand">.</span>Academy</span>
               </div>
               <p className="mt-3 text-sm text-ink/60">Practical coding and technology training for school and college students. Learn · Build · Get Placed.</p>
