@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Resolve Lovable-hosted logo pointers against the stable project asset origin, not the deployment origin, so external hosts such as Vercel can display them.
